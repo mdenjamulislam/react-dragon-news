@@ -8,6 +8,13 @@ export default {
     extend: {
       fontFamily: {
         poppins: "'Poppins', sans-serif",
+      },
+      colors: {
+        primary: '#403F3F',
+        secondary: '#4B5563',
+        accentDanger: '#D72050',
+        accentDark: '#403F3F',
+        textColor: '#706F6F',
       }
     },
     container: {

@@ -1,5 +1,6 @@
 import moment from "moment";
 import Logo from "../../assets/images/logo.png";
+import BrakingNews from "../Home/BrakingNews";
 const Header = () => {
     return (
         <div className="flex flex-col items-center justify-center space-y-5">
@@ -12,6 +13,7 @@ const Header = () => {
                     {moment().format("dddd, MMMM, YYYY")}
                 </p>
             </div>
+            <BrakingNews/>
         </div>
     );
 };
