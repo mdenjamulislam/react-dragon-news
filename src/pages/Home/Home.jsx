@@ -4,6 +4,7 @@ import RightSideNav from "../RightSideNav/RightSideNav";
 import Header from "../shared/Header";
 import Navbar from "../shared/Navbar";
 import NewsCard from "./NewsCard";
+import RigthSidePoster from "../shared/RigthSidePoster";
 
 
 const Home = () => {
@@ -23,8 +24,9 @@ const Home = () => {
                         news.map(singleNews => <NewsCard key={singleNews._id} news={singleNews}></NewsCard>)
                    }
                 </div>
-                <div>
-                    <RightSideNav/>
+                <div className="space-y-4">
+                    <RightSideNav />
+                    <RigthSidePoster/>
                 </div>
             </div>
         </div>

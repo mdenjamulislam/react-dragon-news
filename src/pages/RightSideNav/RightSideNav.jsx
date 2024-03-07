@@ -58,8 +58,6 @@ const RightSideNav = () => {
                 <img src={qZone2} alt="q-Zone" />
                 <img src={qZone3} alt="q-Zone" />
             </div>
-
-            <RigthSidePoster />
         </div>
     );
 };
