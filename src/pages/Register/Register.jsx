@@ -2,24 +2,40 @@ import { FaUserLarge, FaEnvelope, FaCameraRotate } from 'react-icons/fa6';
 import { RiLockPasswordFill } from 'react-icons/ri';
 import { Link, NavLink } from 'react-router-dom';
 import Navbar from '../shared/Navbar';
+import { useContext, useState } from 'react';
+import { AuthContext } from '../../provider/AuthProvider';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
-    const handleRegister = (e) => {
+    const [userCreateSuccessMessage, setUserCreateSuccessMessage] = useState('');
+
+    const { createUser } = useContext(AuthContext);
+
+    const handleRegister = e => {
         e.preventDefault();
 
-        const name = e.target.name.value;
-        const photoUrl = e.target['photo-url'].value;
-        const email = e.target.email.value;
-        const password = e.target.password.value;
-
         const form = new FormData(e.currentTarget);
-        const data = {
-            name: form.get('name'),
-            photoUrl: form.get('photo-url'),
-            email: form.get('email'),
-            password: form.get('password')
-        };
-    }
+        const name = form.get('name');
+        const photoUrl = form.get('photo-url');
+        const email = form.get('email');
+        const password = form.get('password');
+        console.log(name, photoUrl, email, password);
+
+        createUser(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                setUserCreateSuccessMessage('User created successfully!');
+            })
+            .catch(error => {
+                console.error(error.message);
+                setUserCreateSuccessMessage(error.message);
+            });
+        
+        toast(userCreateSuccessMessage);
+    };
+
     return (
         <div className="h-auto md:h-screen">
             <Navbar />
@@ -39,7 +55,7 @@ const Register = () => {
                         <label className="label label-text">Photo URL</label>
                         <label className="input input-bordered flex items-center gap-2">
                             <FaCameraRotate className="text-lg text-textColor" />
-                            <input type="text" name="photo-url" className="w-full grow" placeholder="Enter your photo url" />
+                            <input type="url" name="photo-url" className="w-full grow" placeholder="Enter your photo url" />
                         </label>
                     </div>
                     <div className="form-control ">
@@ -57,7 +73,7 @@ const Register = () => {
                         </label>
                     </div>
                     <div className="form-control">
-                        <label className="label cursor-pointer">
+                        <label className="label cursor-pointer justify-normal gap-3">
                             <input type="checkbox" className="checkbox-success checkbox" />
                             <span className="label-text">
                                 Accept
@@ -76,6 +92,7 @@ const Register = () => {
                             Login
                         </NavLink>
                     </p>
+                    <ToastContainer />
                 </form>
             </div>
         </div>
