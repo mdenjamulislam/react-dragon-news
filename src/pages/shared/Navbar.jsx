@@ -1,7 +1,16 @@
 import { NavLink } from 'react-router-dom';
 import User from '../../assets/images/user.png';
+import { useContext } from 'react';
+import { AuthContext } from '../../provider/AuthProvider';
 
 const Navbar = () => {
+    const { user, logout } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        logout();
+        console.log('User logged out successfully!');
+    }
+
     const navLinks = (
         <>
             <li>
@@ -33,27 +42,32 @@ const Navbar = () => {
                 <ul className="menu menu-horizontal px-1">{navLinks}</ul>
             </div>
             <div className="navbar-end gap-3">
-                <div className="dropdown dropdown-end">
-                    <div tabIndex={0} role="button" className="avatar btn btn-circle btn-ghost">
-                        <div className="w-10 rounded-full">
-                            <img src={User} alt="User" className="h-auto w-10" />
+                {
+                    user ? (
+                        <div className="dropdown dropdown-end">
+                        <div tabIndex={0} role="button" className="avatar btn btn-circle btn-ghost">
+                            <div className="w-10 rounded-full">
+                                <img src={User} alt="User" className="h-auto w-10" />
+                            </div>
                         </div>
+                        <ul tabIndex={0} className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 shadow">
+                            <li>
+                                <a className="justify-between">Profile</a>
+                            </li>
+                            <li>
+                                <a>Settings</a>
+                            </li>
+                            <li>
+                                <button onClick={handleLogOut} >Logout</button>
+                            </li>
+                        </ul>
                     </div>
-                    <ul tabIndex={0} className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 shadow">
-                        <li>
-                            <a className="justify-between">Profile</a>
-                        </li>
-                        <li>
-                            <a>Settings</a>
-                        </li>
-                        <li>
-                            <a>Logout</a>
-                        </li>
-                    </ul>
-                </div>
-                <NavLink to="/login" className="bg-accentDark px-4 py-2 text-white hover:bg-gray-800 md:px-7">
-                    Login
-                </NavLink>
+                    ) : (
+                        <NavLink to="/login" className="bg-accentDark px-4 py-2 text-white hover:bg-gray-800 md:px-7">
+                        Login
+                    </NavLink>
+                    )
+                }
             </div>
         </nav>
     );
