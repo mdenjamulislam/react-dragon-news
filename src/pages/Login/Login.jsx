@@ -1,16 +1,18 @@
-import { NavLink, Navigate, redirect } from 'react-router-dom';
+import { NavLink, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../shared/Navbar';
 import { FaEnvelope } from 'react-icons/fa6';
-import { RiLockPasswordFill } from "react-icons/ri";
+import { RiLockPasswordFill } from 'react-icons/ri';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../provider/AuthProvider';
 import { ToastContainer, toast } from 'react-toastify';
-  import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
     const [userLoginSuccessMessage, setUserLoginSuccessMessage] = useState('');
 
     const { loginUser } = useContext(AuthContext);
+    const location = useLocation();
+    const nevigateTo = useNavigate();
 
     const handleLogin = e => {
         e.preventDefault();
@@ -23,16 +25,18 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 setUserLoginSuccessMessage('User logged in successfully!');
+                // nevigate after login
+                nevigateTo(location?.state ? location.state : '/');
             })
             .catch(error => {
                 console.error(error.message);
                 setUserLoginSuccessMessage(error.message);
             });
-        
+
         toast(userLoginSuccessMessage);
 
         // when user logged in successfully, redirect to home page
-        <Navigate to="/home" />
+        <Navigate to="/home" />;
     };
     return (
         <div className="h-auto md:h-screen">
@@ -65,7 +69,7 @@ const Login = () => {
                             Register
                         </NavLink>
                     </p>
-                    <ToastContainer/>
+                    <ToastContainer />
                 </form>
             </div>
         </div>

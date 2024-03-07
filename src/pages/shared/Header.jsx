@@ -3,7 +3,7 @@ import Logo from "../../assets/images/logo.png";
 import BrakingNews from "../Home/BrakingNews";
 const Header = () => {
     return (
-        <div className="flex flex-col items-center justify-center space-y-5">
+        <div className="flex flex-col items-center justify-center space-y-5 pt-5">
             <div>
                 <img src={Logo} alt="Dragon News" className="h-auto w-auto" />
             </div>
