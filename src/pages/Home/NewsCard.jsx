@@ -14,7 +14,7 @@ const NewsCard = ({ news }) => {
                     </div>
                     <div>
                         <h3 className="text-sm font-semibold text-primary">{author.name}</h3>
-                        <p className="text-xs">{author.published_date}</p>
+                        <p className="text-xs">{author.published_date.slice(0, 10)}</p>
                     </div>
                 </div>
                 <div className="flex items-center gap-2">
@@ -27,7 +27,7 @@ const NewsCard = ({ news }) => {
                     <Link to={`news/${_id}`}>{title}</Link>
                 </h2>
                 <img src={thumbnail_url} alt={title} className="h-40 w-full rounded-lg object-cover md:h-64" />
-                <p>{details.substring(0, 200)}... <Link to={`news/${_id}`} className='text-accentDanger'>Read more</Link></p>
+                <p>{details.substring(0, 150)}... <Link to={`news/${_id}`} className='text-accentDanger'>Read more</Link></p>
                 <div className="flex items-center justify-between border-t border-gray-300 pt-4">
                     <div className="flex items-center gap-3">
                         <div>
