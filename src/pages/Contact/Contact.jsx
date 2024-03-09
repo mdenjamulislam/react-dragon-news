@@ -68,8 +68,8 @@ const Contact = () => {
                             <FaEnvelope className="text-xl text-primary md:text-2xl" />
                         </div>
                         <div className="space-y-2">
-                            <h2 className="heading--two">Address</h2>
-                            <p>124, 04 Rd, Rampura, Dhaka-1219</p>
+                            <h2 className="heading--two">Email</h2>
+                            <p>example@gmail.com</p>
                         </div>
                     </div>
                     <div className="flex items-center gap-3 md:gap-4">
@@ -77,8 +77,8 @@ const Contact = () => {
                             <FaPhone className="text-xl text-primary md:text-2xl" />
                         </div>
                         <div className="space-y-2">
-                            <h2 className="heading--two">Address</h2>
-                            <p>124, 04 Rd, Rampura, Dhaka-1219</p>
+                            <h2 className="heading--two">Phone</h2>
+                            <p>+8801 945-456679</p>
                         </div>
                     </div>
                     {/* Map location */}
