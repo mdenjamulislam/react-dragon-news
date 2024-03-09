@@ -15,6 +15,7 @@ export default {
         accentDanger: '#D72050',
         accentDark: '#403F3F',
         textColor: '#706F6F',
+        'overlay': 'rgba(0, 0, 0, 0.6)',
       }
     },
     container: {
